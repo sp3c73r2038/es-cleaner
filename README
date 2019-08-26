@@ -1,0 +1,15 @@
+* config
+
+see =example.yaml=
+
+* build
+
+  make build
+
+* run
+
+  bin/es-cleaner -config config.yaml -dry=false
+
+* approach
+
+  clean elastic index by name pattern, use datetime and retention.
