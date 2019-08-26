@@ -20,7 +20,10 @@ func main() {
 	cfg := config.ReadConfig(*configFile)
 
 	cron := crontab.New()
-	cron.MustAddJob("* * * * *", CleanLog, cfg, *dry)
+
+	for _, job := range cfg.CleanJob {
+		cron.MustAddJob(job.Cron, CleanLog, job, *dry)
+	}
 
 	for {
 		time.Sleep(time.Second * 10)
@@ -28,21 +31,18 @@ func main() {
 
 }
 
-func CleanLog(cfg *config.Config, dry bool) {
+func CleanLog(job config.CleanJob, dry bool) {
 
 	log.Println("CleanLog")
-
-	for _, job := range cfg.CleanJob {
-		err := es.CleanByDay(
-			job.Endpoints,
-			job.NamePattern,
-			job.DatePattern,
-			job.Retention,
-			dry,
-		)
-		if err != nil {
-			panic(err)
-		}
+	err := es.CleanByDay(
+		job.Endpoints,
+		job.NamePattern,
+		job.DatePattern,
+		job.Retention,
+		dry,
+	)
+	if err != nil {
+		panic(err)
 	}
 
 }

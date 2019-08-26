@@ -10,6 +10,7 @@ type Config struct {
 }
 
 type CleanJob struct {
+	Cron        string   `yaml:"Cron"`
 	Endpoints   []string `yaml:"Endpoints"`
 	NamePattern string   `yaml:"NamePattern"`
 	DatePattern string   `yaml:"DatePattern"`

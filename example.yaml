@@ -1,6 +1,7 @@
 ---
 CleanJob:
-- Endpoints:
+- Cron: '0 3 * * *'  # every day at 3:00 am
+  Endpoints:
   - http://localhost:9200
   NamePattern: logstash-*
   DatePattern: logstash-2006.01.02
