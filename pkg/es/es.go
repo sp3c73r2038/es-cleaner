@@ -42,6 +42,11 @@ func CleanByDay(
 		return err
 	}
 
+	if len(indexNames) <= 0 {
+		log.Println("no indices in this cluster")
+		return nil
+	}
+
 	tmp := make([]string, 0)
 	for _, n := range indexNames {
 		var m bool
@@ -51,6 +56,11 @@ func CleanByDay(
 		if m {
 			tmp = append(tmp, n)
 		}
+	}
+
+	if len(tmp) <= 0 {
+		log.Printf("no matched indice for pattern: %s", namePattern)
+		return nil
 	}
 
 	targets := make([]string, 0)
@@ -65,6 +75,11 @@ func CleanByDay(
 			// log.Printf("will delete %s", n)
 			targets = append(targets, n)
 		}
+	}
+
+	if len(targets) <= 0 {
+		log.Printf("no targets, skip", datePattern)
+		return nil
 	}
 
 	for _, n := range targets {
