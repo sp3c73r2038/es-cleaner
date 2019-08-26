@@ -14,7 +14,7 @@ type CleanJob struct {
 	Endpoints   []string `yaml:"Endpoints"`
 	NamePattern string   `yaml:"NamePattern"`
 	DatePattern string   `yaml:"DatePattern"`
-	Retention   int      `yaml"Retention"`
+	Retention   int      `yaml:"Retention"`
 }
 
 func ReadConfig(fn string) *Config {

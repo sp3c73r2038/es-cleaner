@@ -76,7 +76,7 @@ func CleanByDay(
 		if err != nil {
 			return err
 		}
-		log.Println("delete request acknowledged: %v", resp.Acknowledged)
+		log.Printf("delete request acknowledged: %v", resp.Acknowledged)
 	} else {
 		log.Println("dry mode, will not actually delete")
 	}
