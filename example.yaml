@@ -1,0 +1,7 @@
+---
+CleanJob:
+- Endpoints:
+  - http://localhost:9200
+  NamePattern: logstash-*
+  DatePattern: logstash-2006.01.02
+  Retention: 7
